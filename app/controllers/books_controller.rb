@@ -32,6 +32,13 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def update
+    book = Book.find(params[:id])
+    book.update(post_book_params)
+    flash[:notice] = "You have updated book successfully."
+    redirect_to book_path(book.id)
+  end
+
   # 投稿データのストロングパラメータ
   private
   def post_book_params
