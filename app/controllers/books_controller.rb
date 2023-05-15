@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @post_books = Book.all
   end
 
 
