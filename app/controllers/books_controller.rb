@@ -1,36 +1,35 @@
 class BooksController < ApplicationController
-  
+
   def new
     @book = Book.new
   end
   # 投稿データの保存
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(post_book_params)
     @book.user_id = current_user.id
     @book.save
     redirect_to books_path
   end
-  
+
   def index
-    @books = Book.find.(params[:id])
-　  @user = User.find(params[:id])
-    @post_images = @user.books 
+    @books = Book.all
   end
 
+
   def show
-    @books = Book.find.(params[:id])
+    @books = Book.find(params[:id])
   end
-  
+
   def edit
-    @book  = Book.find.(params[:id])
+    @book  = Book.find(params[:id])
   end
-  
+
   def destroy
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
   end
-  
+
   # 投稿データのストロングパラメータ
   private
   def post_book_params
