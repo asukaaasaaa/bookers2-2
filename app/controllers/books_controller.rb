@@ -8,7 +8,8 @@ class BooksController < ApplicationController
     @book = Book.new(post_book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to books_path
+    flash[:notice] = "You have created book successfully."
+    redirect_to book_path(@book.id)
   end
 
   def index
@@ -18,8 +19,7 @@ class BooksController < ApplicationController
 
   def show
     @books = Book.find(params[:id])
-    @user = User.find(params[:id])
-    @post_books = @user.books
+
   end
 
   def edit
